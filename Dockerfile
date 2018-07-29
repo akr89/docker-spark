@@ -46,7 +46,7 @@ RUN useradd -mU -d /home/hadoop hadoop && passwd -d hadoop && \
     useradd -mU -d /home/${GENERAL_USER} ${GENERAL_USER} && passwd -d ${GENERAL_USER}
 
 # Install python
-ARG MINICONDA_HOME=/usr/local/miniconda
+ENV MINICONDA_HOME=/usr/local/miniconda
 RUN curl -skSL -O https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     /bin/bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -f -b -p ${MINICONDA_HOME} && \
     rm -f Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
