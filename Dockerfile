@@ -73,10 +73,12 @@ RUN curl -skSL https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/
         -o /usr/local/bin/gosu && \
     chmod a+x /usr/local/bin/gosu
 
-ADD entrypoint.sh spark-defaults.conf /
-RUN chmod a+x /entrypoint.sh
+ADD entrypoint.sh spark-defaults.conf /usr/local/
+RUN chmod a+x /usr/local/entrypoint.sh
+
+WORKDIR /tmp
 
 EXPOSE 8080 8081 6066 7077
 EXPOSE 4040 7001 7002 7003 7004 7005 7006
 
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/entrypoint.sh" ]

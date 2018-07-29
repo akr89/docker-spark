@@ -3,7 +3,7 @@ set -e
 
 # Defaults
 : ${SPARK_HOME:?must be set!}
-default_opts="--properties-file /spark-defaults.conf"
+default_opts="--properties-file /usr/local/spark-defaults.conf"
 
 
 # Check if CLI args list containes bind address key.
@@ -41,15 +41,19 @@ master|worker)
 
     echo "==> spark-class invocation arguments: $CLASS $default_opts $@"
 
-    cd /tmp
     exec gosu $SPARK_USER:hadoop $SPARK_HOME/bin/spark-class $CLASS $default_opts $@
   ;;
 shell)
     shift
     echo "==> spark-shell invocation arguments: $default_opts $@"
 
-    cd /tmp
     exec gosu $SPARK_USER:hadoop $SPARK_HOME/bin/pyspark $default_opts $@
+  ;;
+python)
+    shift
+    echo "==> python invocation arguments: $@"
+
+    exec gosu $SPARK_USER:hadoop $MINICONDA_HOME/bin/python $@
   ;;
 *)
     cmdline="$@"
