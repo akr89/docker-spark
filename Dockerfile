@@ -20,9 +20,8 @@ RUN curl -skSL -O https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/s
 VOLUME ${SPARK_HOME}/work /tmp
 
 # Add default config and entypoint
-ADD spark-defaults.conf /usr/local/
-ADD entrypoint.sh /usr/local/bin/
-RUN chmod a+x /usr/local/bin/entrypoint.sh
+ADD ./entrypoint.sh ./spark-defaults.conf /usr/local/
+RUN chmod a+x /usr/local/entrypoint.sh
 
 WORKDIR /tmp
 
@@ -30,4 +29,6 @@ EXPOSE 8080 8081 6066 7077
 EXPOSE 7001 7002 7003 7004 7005 7006
 EXPOSE 4040
 
-ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/entrypoint.sh" ]
+
+# vim:set ft=dockerfile:

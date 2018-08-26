@@ -40,3 +40,5 @@ shell)
     exec gosu $DEFAULT_USER ${cmdline:-"bash"}
   ;;
 esac
+
+# vim:set ft=sh ff=unix:
