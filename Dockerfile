@@ -1,4 +1,4 @@
-FROM akr89/spark:none
+FROM akr89/python:3.7-java8
 
 LABEL version_tags="[\"2.3-hadoop2.6\",\"2.3.1-hadoop2.6\"]"
 
