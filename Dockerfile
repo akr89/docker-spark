@@ -20,6 +20,9 @@ RUN curl -skSL -O https://storage.googleapis.com/ds-storage-1/hadoop-${HADOOP_LI
     rm -f hadoop-${HADOOP_LIB_NATIVE_VERSION}-lib-native.tar.gz
 ENV LD_LIBRARY_PATH=${HADOOP_HOME}/lib/native:${LD_LIBRARY_PATH}
 
+# Install additional python package
+RUN gosu ${DEFAULT_USER} conda install -y -q --name base numpy
+
 # Scratch directories
 # ${SPARK_HOME}/work - directory used on worker for scratch space and job output logs.
 # /tmp - directory to use for "scratch" space in Spark, including map output files and RDDs that get stored on disk.
