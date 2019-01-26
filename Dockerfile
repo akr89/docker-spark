@@ -27,4 +27,10 @@ ENV SPARK_DIST_CLASSPATH=${HADOOP_HOME}/etc/hadoop:${HADOOP_HOME}/share/hadoop/c
 ADD ./requirements.txt /usr/local/
 RUN pip install -r /usr/local/requirements.txt
 
+# Add entrypoint
+ADD ./entrypoint.sh /usr/local/
+RUN chmod a+x /usr/local/entrypoint.sh
+
+ENTRYPOINT [ "/usr/local/entrypoint.sh" ]
+
 # vim:set ft=dockerfile sw=4 ts=4:
