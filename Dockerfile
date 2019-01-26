@@ -21,7 +21,7 @@ RUN curl -skSL -O https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_
     rm -f hadoop-${HADOOP_VERSION}.tar.gz && \
     ln -sf /usr/local/hadoop-${HADOOP_VERSION} ${HADOOP_HOME} && \
     chown -R ${DEFAULT_USER}:${DEFAULT_USER} ${HADOOP_HOME}
-ENV SPARK_DIST_CLASSPATH=$(${HADOOP_HOME}/bin/hadoop classpath)
+ENV SPARK_DIST_CLASSPATH=${HADOOP_HOME}/etc/hadoop:${HADOOP_HOME}/share/hadoop/common/lib/*:${HADOOP_HOME}/share/hadoop/common/*:${HADOOP_HOME}/share/hadoop/hdfs:${HADOOP_HOME}/share/hadoop/hdfs/lib/*:${HADOOP_HOME}/share/hadoop/hdfs/*:${HADOOP_HOME}/share/hadoop/yarn/lib/*:${HADOOP_HOME}/share/hadoop/yarn/*:${HADOOP_HOME}/share/hadoop/mapreduce/lib/*:${HADOOP_HOME}/share/hadoop/mapreduce/*:${HADOOP_HOME}/contrib/capacity-scheduler/*.jar
 
 # Install additional pakcages
 ADD ./requirements.txt /usr/local/
